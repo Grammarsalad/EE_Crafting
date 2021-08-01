@@ -26,6 +26,18 @@ TO DO 38: To be remove lists: regen_list,
 
 TO DO 39: ADD_ICONS: incorporate mage vs. priest scrolls (for learning), and add more stores
 
+2021-07-31
+
+- Wand of fog
+
+- Wand of Freshness
+
+- 
+
+2021-07-29
+
+- missing_wands: Started transfering stuff from below from missing_items to missing_wands
+
 2021-07-25
 
 - missing_items: Wand of wonder text updates and added anims

@@ -218,11 +218,12 @@ Weight: 1~
 Charge abilities:
 - Shillelagh
   As the spell of the same name
-  Range: 0 ft.
+  Range: 0 ft
+  Duration: 10 minutes
   Area of Effect: The wand user
 
 Requires:
- 9 Intelligence
+ 9 Wisdom
 
 Weight: 1~
 
@@ -747,6 +748,23 @@ Requires:
  9 Intelligence
 
 Weight: 1~
+
+@900010079 = ~When activated, this wand creates a thick cloud of fog that obscures vision.  Creatures caught in the radius of the fog suffer -2 to their attack rolls, and can only see 1/2 as far as normal.  All attacks made against creatures within the fog, or against creatues outside the fog, suffer a -4 penalty.
+
+STATISTICS:
+
+Charge abilities:
+- Fog
+  Duration: 6 rounds
+  Range: 30 ft.
+  Area of Effect: 20' radius
+  Saving Throw: None
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
 
 //Wands Rechange @900020001 to @900030000
 

@@ -122,7 +122,7 @@ GROUP @52 //Item Creation
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
 
 //missing items
-INCLUDE ~%folder%/lib/missing_items.tpa~        //New items
+INCLUDE ~%folder%/lib/missing_wands.tpa~        //New items
 
 
 
