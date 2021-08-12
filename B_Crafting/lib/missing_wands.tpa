@@ -31,39 +31,8 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//___________________________________________________________________________
-//
-//
-//                  Wand of Magic Missiles
-//
-//___________________________________________________________________________
 
-//for recharge code, but not creation (except the basic one for standard)
-//creation uses WAND03
 
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND12.ITM~ BEGIN
-
-  COPY_EXISTING ~WAND03.ITM~ ~override/WAND12.ITM~
-
-END
-
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~LIGHT.ITM~ BEGIN
-
-  COPY_EXISTING ~WAND03.ITM~ ~override/LIGHT.ITM~
-
-END
-
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~PULS01.ITM~ BEGIN
-
-  COPY_EXISTING ~WAND03.ITM~ ~override/PULS01.ITM~
-
-END
-
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~PULS02.ITM~ BEGIN
-
-  COPY_EXISTING ~WAND03.ITM~ ~override/PULS02.ITM~
-
-END
 
 //___________________________________________________________________________
 //
@@ -83,6 +52,14 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN03.ITM~ BEGIN
         SAY DESC @900010006
 END
 
+
+//___________________________________________________________________________
+//
+//
+//                  Wand of Fear
+//
+//___________________________________________________________________________
+// WAND02.itm (only one, and present in all engines)
 
 //___________________________________________________________________________
 //
@@ -186,6 +163,37 @@ END
 //___________________________________________________________________________
 //
 //
+//                  Wand of Illumination
+//
+//___________________________________________________________________________
+//| of Illumination (N) | I | 6d6 to undead (only) |
+//just use the fireball pro...
+
+//wiz versioni
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN19.itm~ BEGIN
+
+  COPY ~%folder%/data/wands/B_WAN19.itm~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+        SAY NAME2 @900010037
+        SAY DESC @900010038
+
+END
+
+//pri versioni
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN22.itm~ BEGIN
+
+  COPY ~%folder%/data/wands/B_WAN22.itm~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+        SAY NAME2 @900010037
+        SAY DESC @900010083
+
+END
+
+//___________________________________________________________________________
+//
+//
 //                  Wand of Teeth
 //
 //___________________________________________________________________________
@@ -197,6 +205,431 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN01.ITM~ BEGIN
         SAY NAME2 @900010001
         SAY DESC @900010002
 END
+
+//___________________________________________________________________________
+//
+//
+//                  Wand of Trap Detection
+//
+//___________________________________________________________________________
+//| of Trap Detection (N)  | I |  |
+
+/// Wizard version
+
+//WANDTRP.itm  Wand of Trap Detection iwdee
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WANDTRP.itm~ BEGIN
+  COPY ~%folder%/data/wands/WANDTRP.itm~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+        SAY NAME2 @900010080
+        SAY DESC @900010081
+END
+
+/// Priest version
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN21.itm~ BEGIN
+  COPY ~%folder%/data/wands/B_WAN21.itm~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+        SAY NAME2 @900010080
+        SAY DESC @900010082
+END
+
+//bam
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~IWANDTRP.bam~ BEGIN
+  COPY ~%folder%/data/wands/IWANDTRP.bam~ ~override~
+END
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////         Tier II Wands              ////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//___________________________________________________________________________
+//
+//
+//                  Wand of Armory
+//
+//___________________________________________________________________________
+//WANDARM.itm Wand of Armory IWDEE only
+ACTION_IF !FILE_EXISTS_IN_GAME ~WANDARM.ITM~ BEGIN  //
+  COPY ~%folder%/data/arcane_crafting/wand/WANDARM.ITM~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY NAME2 @900010077
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+	SAY DESC @900010078
+
+//Icon
+  COPY ~%folder%/data/arcane_crafting/wand/IWANDARM.bam~ ~override~
+//Tooltip by engine
+ ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //
+   APPEND ~TOOLTIP.2da~ ~WANDARM%TAB%26366%TAB%26429%TAB%-1~
+ END
+ ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //
+   APPEND ~TOOLTIP.2da~ ~WANDARM%TAB%12053%TAB%12129%TAB%-1~
+ END
+END
+
+//___________________________________________________________________________
+//
+//
+//                  Wand of Magic Missiles
+//
+//___________________________________________________________________________
+
+//for recharge code, but not creation (except the basic one for standard)
+//creation uses WAND03
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND12.ITM~ BEGIN
+
+  COPY_EXISTING ~WAND03.ITM~ ~override/WAND12.ITM~
+
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~LIGHT.ITM~ BEGIN
+
+  COPY_EXISTING ~WAND03.ITM~ ~override/LIGHT.ITM~
+
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~PULS01.ITM~ BEGIN
+
+  COPY_EXISTING ~WAND03.ITM~ ~override/PULS01.ITM~
+
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~PULS02.ITM~ BEGIN
+
+  COPY_EXISTING ~WAND03.ITM~ ~override/PULS02.ITM~
+
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WANDMIS.ITM~ BEGIN
+
+  COPY_EXISTING ~WAND03.ITM~ ~override/WANDMIS.itm~
+
+END
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////         Tier III Wands             ////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//___________________________________________________________________________
+//
+//
+//                  Bonewand
+//
+//___________________________________________________________________________
+//| Bonewand  (N) | III | Shards of Bone (6d4 piercing dam save for 1/2); Animate Dead as Spell |
+
+//wiz
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN07.ITM~ BEGIN
+//Projectile
+  ADD_PROJECTILE ~%folder%/data/iwd_spells/priest_4/idpro303.pro~   //projectile
+//probam
+  COPY ~%folder%/data/iwd_spells/priest_4/TSPRAYT.bam~ ~override~   //
+  COPY ~%folder%/data/wands/B_WAN07.itm~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+        SAY NAME2 @900010013
+        SAY DESC @900010014
+  LPF ALTER_ITEM_HEADER
+    INT_VAR  header = 1 projectile = %idpro303%
+  END
+//tooltip
+ LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010039) // Boneshard
+  $tip(2) = RESOLVE_STR_REF (@900010040) // Animate Skeleton Warrior
+ STR_VAR
+  item = B_WAN07 // file name
+ END
+
+  COPY ~%folder%/data/wands/B_WAN23.itm~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+        SAY NAME2 @900010013
+        SAY DESC @900010014
+  LPF ALTER_ITEM_HEADER
+    INT_VAR  header = 1 projectile = %idpro303%
+  END
+//tooltip
+ LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010039) // Boneshard
+  $tip(2) = RESOLVE_STR_REF (@900010040) // Animate Skeleton Warrior
+ STR_VAR
+  item = B_WAN23 // file name
+ END
+
+END
+
+//___________________________________________________________________________
+//
+//
+//                  Wand of Fireballs
+//
+//___________________________________________________________________________
+//| of Fireballs (N) | III | As Fireball Spell | 6d6 dam
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN05.ITM~ BEGIN
+
+  COPY ~%folder%/data/wands/B_WAN05.itm~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+        SAY NAME2 @900010009
+        SAY DESC @900010010
+END
+
+//___________________________________________________________________________
+//
+//
+//                  Wand of Lightning
+//
+//___________________________________________________________________________
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~IWAND07.BAM~ BEGIN
+
+  COPY ~%folder%/data/arcane_crafting/wand/IWAND07.BAM~ ~override~
+
+END
+
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND07.ITM~ BEGIN
+
+  COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010056
+	SAY DESC @900010057
+        SAY UNIDENTIFIED_DESC @900010058
+
+END
+
+//recharge only
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~MISC7N.ITM~ BEGIN
+
+  COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override/MISC7N.ITM~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010056
+	SAY DESC @900010057
+        SAY UNIDENTIFIED_DESC @900010058
+
+END
+
+//recharge only
+//WANDREA.itm another wand of lightning only in IWDEE...  Add for completenss in recharge code just in case
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WANDREA.ITM~ BEGIN
+
+  COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override/WANDREA.ITM~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010056
+	SAY DESC @900010057
+        SAY UNIDENTIFIED_DESC @900010058
+
+END
+
+//recharge only
+//WANDFAK.itm A second wand of lightning only in IWDEE    Fake??? Add for completenss in recharge code just in case
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WANDFAK.ITM~ BEGIN
+
+  COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override/WANDFAK.ITM~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010056
+	SAY DESC @900010057
+        SAY UNIDENTIFIED_DESC @900010058
+
+END
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////          Tier IV Wands             ////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//___________________________________________________________________________
+//
+//
+//                  Wand of Arc Lightning
+//
+//___________________________________________________________________________
+
+
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN24.ITM~ BEGIN
+//projectile
+ADD_PROJECTILE ~%folder%/data/arcane_crafting/wand/B_EAR01.pro~   //pro
+
+
+  COPY ~%folder%/data/arcane_crafting/wand/B_WAN24.ITM~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+        SAY NAME2 @900010084
+	SAY DESC @900010085
+        LPF ALTER_ITEM_HEADER INT_VAR header = 2 projectile = %B_EAR01% STR_VAR END
+//tooltip
+ LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010087) // Lightning Bolt
+  $tip(2) = RESOLVE_STR_REF (@900010086) // Arc Lightning
+ STR_VAR
+  item = B_WAN24 // file name
+ END
+END
+
+//___________________________________________________________________________
+//
+//
+//                  Wand of Eyes
+//
+//___________________________________________________________________________
+//| of Eyes (N) | IV |   Wizard Eye;  |  b_wan09
+//add protection from B_WAND09 to WIzEye spell
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN09.ITM~ BEGIN
+//WIzEye
+//copy wiz eye, add immunity to secspell:
+  COPY_EXISTING ~SPWI425.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 206 STR_VAR resource = ~B_WNDEY~ END  //Protection from secspell
+//create secspell
+  COPY_EXISTING ~SPWI425.spl~ ~override/B_WNDEY.spl~
+    WRITE_BYTE 0x001c  4  //innate no wiz spell!
+
+//CureBlind
+
+//Detect Invisibility
+//create secspell
+  COPY_EXISTING ~SPWI203.spl~ ~override/B_WNDDI.spl~
+    WRITE_BYTE 0x001c  4  //innate no wiz spell!
+
+//actual wand
+
+  COPY ~%folder%/data/wands/B_WAN09.itm~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+        SAY NAME2 @900010017
+        SAY DESC @900010018
+
+//tooltip
+ LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010044) // Wizard Eye
+  $tip(2) = RESOLVE_STR_REF (@900010045) // Remove Blindness
+  $tip(3) = RESOLVE_STR_REF (@900010046) // Detect Invisibility
+ STR_VAR
+  item = B_WAN09 // file name
+ END
+END  //no B_WAN07.itm
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////          Tier V Wands              ////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////          Tier VI Wands             ////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//___________________________________________________________________________
+//
+//
+//                  Animated Wand
+//
+//___________________________________________________________________________
+//| Animated Wand (N) | VI | Transforms into a blade that fights for the caster |
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN06.itm~ BEGIN
+
+ COPY ~%folder%/data/wands/B_WAN06.itm~ ~override~
+        SAY NAME1 @900010075     //unidentified Wand
+        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
+        SAY NAME2 @900010011
+        SAY DESC @900010012
+//cre
+ COPY ~%folder%/data/wands/B_WAN06.cre~ ~override~
+          SAY NAME1 @900010011
+          SAY NAME2 @900010011
+//crea weapon  IPSION.itm
+ COPY ~%folder%/data/wands/B_WAN06A.itm~ ~override~
+          SAY NAME1 @900010011
+          SAY NAME2 @900010011
+//just in case
+ COPY ~%folder%/data/wands/IPSION.itm~ ~override~
+
+END  //end if no animated wand
+
+//___________________________________________________________________________
+//
+//
+//                  Wand of Banishment
+//
+//___________________________________________________________________________
+//| of Banishment (Ns) | VI | Removes summoned creatures, evil outsiders save or destroyed/banished |
+//only installed if SR is installed 
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN12.itm~ BEGIN
+
+ ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BANISHMENT~)) BEGIN  //SR Banishment
+
+ LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_BANISHMENT~
+  RET spell_res
+ END
+
+ COPY_EXISTING ~%spell_res%.spl~ ~override/B_WANBA.spl~
+  WRITE_BYTE 0x001c  4  //innate
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 177 savingthrow = 8           //  save wand
+  END      //
+  LPF CLONE_EFFECT
+      INT_VAR match_opcode = 177 savingthrow = 0  timing = 0 duration = 18
+      STR_VAR resource = ~B_WANST~   //Stun
+  END
+
+  //stun eff
+  COPY ~%folder%/data/wands/B_WANST.eff~ ~override~   //stun effect
+
+  //actual wand
+  COPY ~%folder%/data/wands/B_WAN12.itm~ ~override~
+        SAY NAME2 @900010023
+        SAY DESC @900010024
+
+
+ END //end check for banishment
+//dummy wand if not available
+ ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BANISHMENT~)) BEGIN
+
+  COPY_EXISTING ~WAND03.ITM~ ~override/B_WAN12.ITM~
+
+//add dummy spell for code
+   APPEND ~spell.ids~ ~5101 CLERIC_BANISHMENT~
+ END
+
+END//end check for wand
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////         Tier VII Wands             ////////////////////////////////////
+////////////////////////////////////                                    ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 //CONTINUE
 
@@ -362,30 +795,6 @@ END
 //not adding for now
 
 
-//___________________________________________________________________________
-//
-//
-//                  Wand of Armory
-//
-//___________________________________________________________________________
-//WANDARM.itm Wand of Armory IWDEE only
-ACTION_IF !FILE_EXISTS_IN_GAME ~WANDARM.ITM~ BEGIN  //
-  COPY ~%folder%/data/arcane_crafting/wand/WANDARM.ITM~ ~override~
-        SAY NAME1 @900010075     //unidentified Wand
-        SAY NAME2 @900010077
-        SAY UNIDENTIFIED_DESC @900010076   //unidentified generic desc
-	SAY DESC @900010078
-
-//Icon
-  COPY ~%folder%/data/arcane_crafting/wand/IWANDARM.bam~ ~override~
-//Tooltip by engine
-  ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //
-   APPEND ~TOOLTIP.2da~ ~WANDARM%TAB%26366%TAB%26429%TAB%-1~
-  END
-  ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //
-   APPEND ~TOOLTIP.2da~ ~WANDARM%TAB%12053%TAB%12129%TAB%-1~
-  END
-END
 
 //CONTINUE
 
@@ -444,15 +853,8 @@ END
 //                  Wand of
 //
 //___________________________________________________________________________
-//WANDTRP.itm  Wand of Trap Detection
 
 
-//WANDFAK.itm A second wand of lightning only in IWDEE    Fake??? Add for completenss in recharge code just in case
-
-
-//WANDMIS.itm Pemby's Wand of Many Missiles: a better mm wand... IWDEE only Add for completeness in recharge code..
-
-//WANDREA.itm another wand of lightning only in IWDEE...  Add for completenss in recharge code just in case
 
 
 
@@ -531,58 +933,8 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////
-//////////////////         Wand of Lightning          //////////////////
-////////////////////////////////////////////////////////////////////////
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~IWAND07.BAM~ BEGIN
-
-  COPY ~%folder%/data/arcane_crafting/wand/IWAND07.BAM~ ~override~
-
-END
 
 
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND07.ITM~ BEGIN
-
-  COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override~
-        SAY NAME1 @900010055
-        SAY NAME2 @900010056
-	SAY DESC @900010057
-        SAY UNIDENTIFIED_DESC @900010058
-
-END
-
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~MISC7N.ITM~ BEGIN
-
-  COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override/MISC7N.ITM~
-        SAY NAME1 @900010055
-        SAY NAME2 @900010056
-	SAY DESC @900010057
-        SAY UNIDENTIFIED_DESC @900010058
-
-END
-
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~WANDREA.ITM~ BEGIN
-
-  COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override/WANDREA.ITM~
-        SAY NAME1 @900010055
-        SAY NAME2 @900010056
-	SAY DESC @900010057
-        SAY UNIDENTIFIED_DESC @900010058
-
-END
-
-////////////////////////////////////////////////////////////////////////
-//////////////////         Wand of Fireballs          //////////////////
-////////////////////////////////////////////////////////////////////////
-
-//| of Fireballs (N) | III | As Fireball Spell | 6d6 dam
-
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN05.ITM~ BEGIN
-
-  COPY ~%folder%/data/wands/B_WAN05.itm~ ~override~
-        SAY NAME2 @900010009
-        SAY DESC @900010010
-END
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -844,80 +1196,9 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND13.ITM~ BEGIN
 END
 
 
-////////////////////////////////////////////////////////////////////////
-//////////////////            Bonewand                //////////////////
-////////////////////////////////////////////////////////////////////////
-//| Bonewand  (N) | ? | Shards of Bone (6d4 piercing dam save for 1/2); Animate Dead as Spell |
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN07.ITM~ BEGIN
-//Projectile
-  ADD_PROJECTILE ~%folder%/data/iwd_spells/priest_4/idpro303.pro~   //projectile
-//probam
-  COPY ~%folder%/data/iwd_spells/priest_4/TSPRAYT.bam~ ~override~   //
-  COPY ~%folder%/data/wands/B_WAN07.itm~ ~override~
-          SAY NAME2 @900010013
-          SAY DESC @900010014
-  LPF ALTER_ITEM_HEADER
-    INT_VAR  header = 1 projectile = %idpro303%
-  END
-//tooltip
- LAF tooltips INT_VAR
-  $tip(1) = RESOLVE_STR_REF (@900010039) // Boneshard
-  $tip(2) = RESOLVE_STR_REF (@900010040) // Animate Skeleton Warrior
- STR_VAR
-  item = B_WAN07 // file name
- END
-END
 
-////////////////////////////////////////////////////////////////////////
-//////////////////            Wand of Eyes            //////////////////
-////////////////////////////////////////////////////////////////////////
-//| of Eyes (N) | V |   Wizard Eye; See Invisible |  b_wan09
-//add protection from B_WAND09 to WIzEye spell
 
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN07.ITM~ BEGIN
-//WIzEye
-//copy wiz eye, add immunity to secspell:
-  COPY_EXISTING ~SPWI425.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 206 STR_VAR resource = ~B_WNDEY~ END  //Protection from secspell
-//create secspell
-  COPY_EXISTING ~SPWI425.spl~ ~override/B_WNDEY.spl~
-    WRITE_BYTE 0x001c  4  //innate no wiz spell!
 
-//CureBlind
-
-//Detect Invisibility
-//create secspell
-  COPY_EXISTING ~SPWI203.spl~ ~override/B_WNDDI.spl~
-    WRITE_BYTE 0x001c  4  //innate no wiz spell!
-
-//actual wand
-
-  COPY ~%folder%/data/wands/B_WAN09.itm~ ~override~
-        SAY NAME2 @900010017
-        SAY DESC @900010018
-
-//tooltip
- LAF tooltips INT_VAR
-  $tip(1) = RESOLVE_STR_REF (@900010044) // Wizard Eye
-  $tip(2) = RESOLVE_STR_REF (@900010045) // Remove Blindness
-  $tip(3) = RESOLVE_STR_REF (@900010046) // Detect Invisibility
- STR_VAR
-  item = B_WAN09 // file name
- END
-END
-
-////////////////////////////////////////////////////////////////////////
-//////////////////         Wand of Illumination       //////////////////
-////////////////////////////////////////////////////////////////////////
-//| of Illumination (N) | V | As Sunfire |
-//just use the fireball pro...
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN19.itm~ BEGIN
-
-  COPY ~%folder%/data/wands/B_WAN19.itm~ ~override~
-        SAY NAME2 @900010037
-        SAY DESC @900010038
-
-END
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////          Wand of Swarming          //////////////////
@@ -995,71 +1276,8 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND19.itm~ BEGIN
   LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68083) match_parameter1 = 37805 STR_VAR END  //Silence notification
 END  //end add wand
 
-////////////////////////////////////////////////////////////////////////
-//////////////////            Animated Wand           //////////////////
-////////////////////////////////////////////////////////////////////////
-//| Animated Wand (N) | VI | Transforms into a blade that fights for the caster |
-
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN06.itm~ BEGIN
-
- COPY ~%folder%/data/wands/B_WAN06.itm~ ~override~
-          SAY NAME2 @900010011
-          SAY DESC @900010012
-//cre
- COPY ~%folder%/data/wands/B_WAN06.cre~ ~override~
-          SAY NAME1 @900010011
-          SAY NAME2 @900010011
-//crea weapon  IPSION.itm
- COPY ~%folder%/data/wands/B_WAN06A.itm~ ~override~
-          SAY NAME1 @900010011
-          SAY NAME2 @900010011
-//just in case
- COPY ~%folder%/data/wands/IPSION.itm~ ~override~
-END
-
-////////////////////////////////////////////////////////////////////////
-//////////////////          Wand of Banishment        //////////////////
-////////////////////////////////////////////////////////////////////////
-//| of Banishment (Ns) | VI | Removes summoned creatures, evil outsiders save or destroyed/banished |
-//only installed if SR is installed 
-
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN12.itm~ BEGIN
-
- ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BANISHMENT~)) BEGIN  //SR Banishment
-
- LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_BANISHMENT~
-  RET spell_res
- END
-
- COPY_EXISTING ~%spell_res%.spl~ ~override/B_WANBA.spl~
-  WRITE_BYTE 0x001c  4  //innate
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 177 savingthrow = 8           //  save wand
-  END      //
-  LPF CLONE_EFFECT
-      INT_VAR match_opcode = 177 savingthrow = 0  timing = 0 duration = 18
-      STR_VAR resource = ~B_WANST~   //Stun
-  END
-
-  //stun eff
-  COPY ~%folder%/data/wands/B_WANST.eff~ ~override~   //stun effect
-
-  //actual wand
-  COPY ~%folder%/data/wands/B_WAN12.itm~ ~override~
-        SAY NAME2 @900010023
-        SAY DESC @900010024
 
 
- END //end check for banishment
-//dummy wand if not available
- ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BANISHMENT~)) BEGIN
-
-  COPY_EXISTING ~WAND03.ITM~ ~override/B_WAN12.ITM~
-
- END
-
-END//end check for wand
 
 
 

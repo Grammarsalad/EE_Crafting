@@ -26,13 +26,47 @@ TO DO 38: To be remove lists: regen_list,
 
 TO DO 39: ADD_ICONS: incorporate mage vs. priest scrolls (for learning), and add more stores
 
+Version 0.00.02
+
+2021-08-08
+
+- Animated Wand
+
+- Wand of lightning
+
+- Wand of Arc Lightning
+
+- Shifted Wand of Armory to tier 2
+
+- Wand of Banishment
+
+
+2021-08-07
+
+- Moved wand of missiles to tier 2
+
+- Wand of illumination (moved to tier 1)
+
+- Wand of Armory
+
+- Bonewand
+
+- Wand of eyes
+
+- Checked for wand of fear
+
+- Wand of fireballs
+
+2021-08-03
+
+- Wand of Trap Detection
+
 2021-07-31
 
 - Wand of fog
 
 - Wand of Freshness
 
-- 
 
 2021-07-29
 

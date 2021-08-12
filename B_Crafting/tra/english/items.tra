@@ -537,7 +537,7 @@ Weight: 1~
 
 Charge abilities:
 - Sunfire
-  The wielder is the center of a sudden burst of flame, doing 6d6 points of fire damage to all surrounding undead creatures (save vs. wands for 1/2) but leaving the wielder and non-undead unscathed.
+  The wielder is the center of a sudden burst of flame, doing 6d6 points of fire damage to all surrounding undead (save vs. wands for 1/2) but leaving the wielder unscathed.  
   Damage: 6d6
   Range: 0
   Area of Effect: 15-ft. radius
@@ -764,6 +764,73 @@ Requires:
  9 Intelligence
 
 Weight: 1~
+
+@900010080 = ~Wand of Trap Detection~
+
+@900010081 = ~This wand allows the user to detect traps as if <PRO_HESHE> were a Thief.
+
+STATISTICS:
+
+Charge abilities:
+- Find Traps
+  Traps are revealed to the user as if <PRO_HESHE> were a Thief
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010082 = ~This wand allows the user to detect traps as if <PRO_HESHE> were a Thief.
+
+STATISTICS:
+
+Charge abilities:
+- Find Traps
+  Traps are revealed to the user as if <PRO_HESHE> were a Thief
+
+Requires:
+ 9 Wisdom
+
+Weight: 1~
+
+@900010083 = ~When this wand is activated, the wielder bursts into a brilliant flame, doing 6d6 points of fire damage to all undead within 15'.  Living creatures, magical constructs, and others are unharmed.
+
+Charge abilities:
+- Sunfire
+  The wielder is the center of a sudden burst of flame, doing 6d6 points of fire damage to all surrounding undead (save vs. wands for 1/2) but leaving the wielder unscathed.  
+  Damage: 6d6
+  Range: 0
+  Area of Effect: 15-ft. radius
+  Saving Throw: 1/2
+
+Requires:
+ 9 Wisdom
+
+Weight: 1~
+
+@900010084 = ~Wand of Arc Lightning~
+@900010085 = ~This wand functions like a wand of lightning (doing 6d6 points of damage), except that it can also create a field of electrical energy that does 3d6 points of electrical damage to all creatures in the area.
+
+STATISTICS:
+
+Charge abilities:
+- Lightning Bolt
+  Damage: 6d6 electrical (Save vs. Wand for half)
+  Range: 100 ft.
+  Area of Effect: Path of bolt
+
+- Lightning Arc
+  Damage: 3d6 electrical (Save vs. Wand for half)
+  Range: 100 ft.
+  Area of Effect: 15-ft. radius
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010086 = ~Arc Lightning~
+@900010087 = ~Lightning Bolt~
 
 
 //Wands Rechange @900020001 to @900030000
