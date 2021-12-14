@@ -1,0 +1,409 @@
+
+
+COPY ~%folder%/lib/lists/list.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_mg1.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_mg2.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_mg3.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_mg4.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_mg5.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_mg6.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_mg7.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_mg8.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_mg9.tpa~ ~override~
+
+//copy all spells
+COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+      READ_BYTE 0x001C type //Spell type Start with wiz I guess
+	   PATCH_IF type = 1 BEGIN  //if it's a wiz spell
+	        READ_LONG  0x0034 level //spell level 
+                READ_LONG 0x0008 s_name // spell strref name = %s_name%
+                READ_LONG 0x0050 sp_desc
+                    PATCH_IF ((s_name > 0) AND (sp_desc > 0)) AND ((sp_desc < 9999998) AND (level = 1)) BEGIN   //
+                                                                  READ_STRREF 0x0008 name // spell name in text = %name%
+							          READ_SHORT 0x007E target //Target  = %target%
+							          READ_SHORT 0x0080 range //range  = %range%
+								      INNER_PATCH_SAVE sp_file ~%SOURCE_RES%~ BEGIN  END //Spell file name = %sp_file%
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list_mg1.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+								      COPY_EXISTING ~list.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+					                              END
+                             END//name Not -1 and level 1
+                    PATCH_IF ((s_name > 0) AND (sp_desc > 0)) AND ((sp_desc < 9999998) AND (level = 2)) BEGIN   //
+                                                                  READ_STRREF 0x0008 name // spell name in text = %name%
+							          READ_SHORT 0x007E target //Target  = %target%
+							          READ_SHORT 0x0080 range //range  = %range%
+								      INNER_PATCH_SAVE sp_file ~%SOURCE_RES%~ BEGIN  END //Spell file name = %sp_file%
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list_mg2.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+								      COPY_EXISTING ~list.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+					                              END
+                             END//name Not -1 and level 2
+                    PATCH_IF ((s_name > 0) AND (sp_desc > 0)) AND ((sp_desc < 9999998) AND (level = 3)) BEGIN   //
+                                                                  READ_STRREF 0x0008 name // spell name in text = %name%
+							          READ_SHORT 0x007E target //Target  = %target%
+							          READ_SHORT 0x0080 range //range  = %range%
+								      INNER_PATCH_SAVE sp_file ~%SOURCE_RES%~ BEGIN  END //Spell file name = %sp_file%
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list_mg3.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+								      COPY_EXISTING ~list.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+					                              END
+                             END//name Not -1 and level 3
+                    PATCH_IF ((s_name > 0) AND (sp_desc > 0)) AND ((sp_desc < 9999998) AND (level = 4)) BEGIN   //
+                                                                  READ_STRREF 0x0008 name // spell name in text = %name%
+							          READ_SHORT 0x007E target //Target  = %target%
+							          READ_SHORT 0x0080 range //range  = %range%
+								      INNER_PATCH_SAVE sp_file ~%SOURCE_RES%~ BEGIN  END //Spell file name = %sp_file%
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list_mg4.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+								      COPY_EXISTING ~list.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+					                              END
+                             END//name Not -1 and level 4
+                    PATCH_IF ((s_name > 0) AND (sp_desc > 0)) AND ((sp_desc < 9999998) AND (level = 5)) BEGIN   //
+                                                                  READ_STRREF 0x0008 name // spell name in text = %name%
+							          READ_SHORT 0x007E target //Target  = %target%
+							          READ_SHORT 0x0080 range //range  = %range%
+								      INNER_PATCH_SAVE sp_file ~%SOURCE_RES%~ BEGIN  END //Spell file name = %sp_file%
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list_mg5.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+								      COPY_EXISTING ~list.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+					                              END
+                             END//name Not -1 and level 5
+                    PATCH_IF ((s_name > 0) AND (sp_desc > 0)) AND ((sp_desc < 9999998) AND (level = 6)) BEGIN   //
+                                                                  READ_STRREF 0x0008 name // spell name in text = %name%
+							          READ_SHORT 0x007E target //Target  = %target%
+							          READ_SHORT 0x0080 range //range  = %range%
+								      INNER_PATCH_SAVE sp_file ~%SOURCE_RES%~ BEGIN  END //Spell file name = %sp_file%
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list_mg6.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+								      COPY_EXISTING ~list.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+					                              END
+                             END//name Not -1 and level 6
+                    PATCH_IF ((s_name > 0) AND (sp_desc > 0)) AND ((sp_desc < 9999998) AND (level = 7)) BEGIN   //
+                                                                  READ_STRREF 0x0008 name // spell name in text = %name%
+							          READ_SHORT 0x007E target //Target  = %target%
+							          READ_SHORT 0x0080 range //range  = %range%
+								      INNER_PATCH_SAVE sp_file ~%SOURCE_RES%~ BEGIN  END //Spell file name = %sp_file%
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list_mg7.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+								      COPY_EXISTING ~list.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+					                              END
+                             END//name Not -1 and level 7
+                    PATCH_IF ((s_name > 0) AND (sp_desc > 0)) AND ((sp_desc < 9999998) AND (level = 8)) BEGIN   //
+                                                                  READ_STRREF 0x0008 name // spell name in text = %name%
+							          READ_SHORT 0x007E target //Target  = %target%
+							          READ_SHORT 0x0080 range //range  = %range%
+								      INNER_PATCH_SAVE sp_file ~%SOURCE_RES%~ BEGIN  END //Spell file name = %sp_file%
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list_mg8.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+								      COPY_EXISTING ~list.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+					                              END
+                             END//name Not -1 and level 8
+                    PATCH_IF ((s_name > 0) AND (sp_desc > 0)) AND ((sp_desc < 9999998) AND (level = 9)) BEGIN   //
+                                                                  READ_STRREF 0x0008 name // spell name in text = %name%
+							          READ_SHORT 0x007E target //Target  = %target%
+							          READ_SHORT 0x0080 range //range  = %range%
+								      INNER_PATCH_SAVE sp_file ~%SOURCE_RES%~ BEGIN  END //Spell file name = %sp_file%
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list_mg9.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+								      COPY_EXISTING ~list.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_file% => ~%name%~"
+					                              END
+                             END//name Not -1 and level 9
+           END //end wizard spells
+  END//End copy all spells Source_Size
+BUT_ONLY
+//wizard lists
+INCLUDE ~override/list.tpa~
+INCLUDE ~override/list_mg1.tpa~
+INCLUDE ~override/list_mg2.tpa~
+INCLUDE ~override/list_mg3.tpa~
+INCLUDE ~override/list_mg4.tpa~
+INCLUDE ~override/list_mg5.tpa~
+INCLUDE ~override/list_mg6.tpa~
+INCLUDE ~override/list_mg7.tpa~
+INCLUDE ~override/list_mg8.tpa~
+INCLUDE ~override/list_mg9.tpa~
+//priest list (tie to priest scrolls?)
+
+
+COPY ~%folder%/lib/lists/list2.tpa~ ~override~
+
+
+
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+    PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+         READ_BYTE 0x001C item_type // item type = %item_type%
+         PATCH_IF item_type = 0x000b BEGIN // only if scroll type
+           GET_OFFSET_ARRAY ab_array 0x64 4 0x68 2 0 0 0x38
+              PHP_EACH ab_array AS int => ab_off BEGIN
+                 GET_OFFSET_ARRAY2 fx_array ab_off ITM_V10_HEAD_EFFECTS
+                 PHP_EACH fx_array AS int => fx_off BEGIN
+                    READ_SHORT fx_off fx_type
+                    PATCH_IF (fx_type = 146) OR (fx_type = 148) BEGIN  //cast spell
+                         READ_ASCII fx_off + 0x0014 resource
+                      //   PATCH_PRINT "I cast %resource%"
+                      //   PATCH_PRINT "this is %sp_file%"
+              INNER_PATCH_SAVE sc_file ~%SOURCE_RES%~ BEGIN END
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list2.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+~%sc_file%~  => %resource%"
+                                                                      END
+                         READ_STRREF 0x000c scroll_name //not needed, I think, but let's keep it in case
+                         //
+                         //    PATCH_IF (~%sp_file%~ STRING_EQUAL_CASE ~%resource%~) BEGIN
+
+                        //     END//spell file = resource
+                    END//opcode cast spell
+                 END//PHP_EACH
+              END//PHP_EACH
+         END//only scroll type
+    END   //source size
+BUT_ONLY
+
+ACTION_PHP_EACH scr1 AS sloppy => soppy BEGIN
+  ACTION_IF (!FILE_CONTAINS_EVALUATED(~list2.tpa~ ~%sloppy%~)) BEGIN  //
+    PRINT ~Wa! %soppy% doesn't have a scroll.~
+      COPY_EXISTING ~%sloppy%.spl~ ~override~
+           READ_LONG  0x0034 level //spell level
+           READ_LONG 0x0008 name //spell name
+	   READ_LONG 0x0050 desc //description
+	   READ_SHORT 0x007E target //Target-check
+	   READ_SHORT 0x0080 range //range-check
+           READ_ASCII 0x0076 spellicon (7)
+           INNER_PATCH_SAVE spelz ~%SOURCE_RES%~ BEGIN  END
+           INNER_PATCH_SAVE gen ~%SOURCE_RES%~ BEGIN
+            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+           END
+        //   PATCH_PRINT "%level% and %name% and %target% and %range% and %spellicon% and %gen% and %SOURCE_RES%"
+           //add missing bams here 
+           PATCH_IF NOT FILE_EXISTS_IN_GAME ~%spellicon%A.BAM~ BEGIN  //  missing bams
+                  LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL ~%gen%A~ END
+                  READ_ASCII 0x0076 spellicon (7)
+                INNER_ACTION BEGIN
+                   COPY_EXISTING ~ISCRL02.bam~ ~override/%spellicon%A.bam~  //
+                END//inner_action end
+            END
+
+           INNER_ACTION BEGIN   //create scroll
+            COPY_EXISTING ~SCRL77.itm~ ~override/%gen%.ITM~   //magic missile scroll generic
+             WRITE_LONG 0x0008 ~%name%~
+             WRITE_LONG 0x000c ~%name%~
+             WRITE_LONG 0x0054 ~%desc%~
+             WRITE_SHORT 0x007E target //Target-check
+             WRITE_SHORT 0x0080 range //range-check
+             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+             LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL ~%spellicon%A~  END
+             WRITE_LONG 0x0034 (level * 100)
+             LPF ALTER_EFFECT
+                INT_VAR match_opcode = 146            //
+                STR_VAR resource = EVAL ~%sloppy%~
+             END
+             LPF ALTER_EFFECT
+                INT_VAR match_opcode = 147            //
+                STR_VAR resource = EVAL ~%sloppy%~
+             END
+             //add to list2
+								      INNER_ACTION BEGIN
+								      COPY_EXISTING ~list2.tpa~ ~override~
+								           REPLACE_TEXTUALLY "BEGIN" "BEGIN
+~%gen%~  => %spelz%"
+                                                                      END
+
+           END //end scroll creation
+
+  END
+END
+
+
+INCLUDE ~override/list2.tpa~
+
+//level 1
+ACTION_PHP_EACH scr_mg_1 AS this => that BEGIN
+
+       ACTION_PHP_EACH scr2 AS gobble => bobble BEGIN
+
+           ACTION_IF (~%this%~ STRING_EQUAL_CASE ~%bobble%~) BEGIN
+
+               PRINT ~Then %this% is spell name.  %that% is spell file.  %gobble% is scroll file.  %bobble% is spell file~
+              // PRINT ~Scroll file name is %gobble%?  Spell resource %bobble%. Ya?~
+                 COPY ~%folder%/lib/lists/b_scrib.d~ ~%folder%/lib/lists/b_scrib.d~ // let's start building the dialog
+                 REPLACE_TEXTUALLY "SAY @115006" "SAY @115006
+IF ~HaveSpell(WIZARD_SPELL)~ THEN REPLY daspl_namem1 DO ~TakePartyGold(100) DestroyGold(100) RemoveSpell(WIZARD_SPELL) GiveItemCreate(dascr_namem1,Myself,1,1,1) ~ EXIT"
+                 REPLACE_TEXTUALLY ~HaveSpell(WIZARD_SPELL)~ ~HaveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~daspl_namem1~ ~"Use %that% spell to create scroll of %that%."~
+                 REPLACE_TEXTUALLY ~RemoveSpell(WIZARD_SPELL)~ ~RemoveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~dascr_namem1~ ~"%gobble%"~
+           END
+       END
+END //php
+
+//level 2
+ACTION_PHP_EACH scr_mg_2 AS this => that BEGIN
+
+       ACTION_PHP_EACH scr2 AS gobble => bobble BEGIN
+
+           ACTION_IF (~%this%~ STRING_EQUAL_CASE ~%bobble%~) BEGIN
+            //   PRINT ~%this% is a second level spell.  Spell file name is %that%. Ya?~
+              // PRINT ~Scroll file name is %gobble%?  Spell resource %bobble%. Ya?~
+                 COPY ~%folder%/lib/lists/b_scrib.d~ ~%folder%/lib/lists/b_scrib.d~ // let's start building the dialog
+                 REPLACE_TEXTUALLY "SAY @115007" "SAY @115007
+IF ~HaveSpell(WIZARD_SPELL)~ THEN REPLY daspl_namem1 DO ~TakePartyGold(200) DestroyGold(200) RemoveSpell(WIZARD_SPELL) GiveItemCreate(dascr_namem1,Myself,1,1,1) ~ EXIT"
+                 REPLACE_TEXTUALLY ~HaveSpell(WIZARD_SPELL)~ ~HaveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~daspl_namem1~ ~"Use %that% spell to create scroll of %that%."~
+                 REPLACE_TEXTUALLY ~RemoveSpell(WIZARD_SPELL)~ ~RemoveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~dascr_namem1~ ~"%gobble%"~
+           END
+       END
+END //php
+
+//level 3
+ACTION_PHP_EACH scr_mg_3 AS this => that BEGIN
+
+       ACTION_PHP_EACH scr2 AS gobble => bobble BEGIN
+           ACTION_IF (~%this%~ STRING_EQUAL_CASE ~%bobble%~) BEGIN
+              // PRINT ~Scroll file name is %gobble%?  Spell resource %bobble%. Ya?~
+                 COPY ~%folder%/lib/lists/b_scrib.d~ ~%folder%/lib/lists/b_scrib.d~ // let's start building the dialog
+                 REPLACE_TEXTUALLY "SAY @115008" "SAY @115008
+IF ~HaveSpell(WIZARD_SPELL)~ THEN REPLY daspl_namem1 DO ~TakePartyGold(300) DestroyGold(300) RemoveSpell(WIZARD_SPELL) GiveItemCreate(dascr_namem1,Myself,1,1,1) ~ EXIT"
+                 REPLACE_TEXTUALLY ~HaveSpell(WIZARD_SPELL)~ ~HaveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~daspl_namem1~ ~"Use %that% spell to create scroll of %that%."~
+                 REPLACE_TEXTUALLY ~RemoveSpell(WIZARD_SPELL)~ ~RemoveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~dascr_namem1~ ~"%gobble%"~
+           END
+       END
+END //php
+
+//level 4
+ACTION_PHP_EACH scr_mg_4 AS this => that BEGIN
+
+       ACTION_PHP_EACH scr2 AS gobble => bobble BEGIN
+           ACTION_IF (~%this%~ STRING_EQUAL_CASE ~%bobble%~) BEGIN
+              // PRINT ~Scroll file name is %gobble%?  Spell resource %bobble%. Ya?~
+                 COPY ~%folder%/lib/lists/b_scrib.d~ ~%folder%/lib/lists/b_scrib.d~ // let's start building the dialog
+                 REPLACE_TEXTUALLY "SAY @115009" "SAY @115009
+IF ~HaveSpell(WIZARD_SPELL)~ THEN REPLY daspl_namem1 DO ~TakePartyGold(400) DestroyGold(400) RemoveSpell(WIZARD_SPELL) GiveItemCreate(dascr_namem1,Myself,1,1,1) ~ EXIT"
+                 REPLACE_TEXTUALLY ~HaveSpell(WIZARD_SPELL)~ ~HaveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~daspl_namem1~ ~"Use %that% spell to create scroll of %that%."~
+                 REPLACE_TEXTUALLY ~RemoveSpell(WIZARD_SPELL)~ ~RemoveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~dascr_namem1~ ~"%gobble%"~
+           END
+       END
+END //php
+//level 5
+ACTION_PHP_EACH scr_mg_5 AS this => that BEGIN
+
+       ACTION_PHP_EACH scr2 AS gobble => bobble BEGIN
+           ACTION_IF (~%this%~ STRING_EQUAL_CASE ~%bobble%~) BEGIN
+              // PRINT ~Scroll file name is %gobble%?  Spell resource %bobble%. Ya?~
+                 COPY ~%folder%/lib/lists/b_scrib.d~ ~%folder%/lib/lists/b_scrib.d~ // let's start building the dialog
+                 REPLACE_TEXTUALLY "SAY @115010" "SAY @115010
+IF ~HaveSpell(WIZARD_SPELL)~ THEN REPLY daspl_namem1 DO ~TakePartyGold(500) DestroyGold(500) RemoveSpell(WIZARD_SPELL) GiveItemCreate(dascr_namem1,Myself,1,1,1) ~ EXIT"
+                 REPLACE_TEXTUALLY ~HaveSpell(WIZARD_SPELL)~ ~HaveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~daspl_namem1~ ~"Use %that% spell to create scroll of %that%."~
+                 REPLACE_TEXTUALLY ~RemoveSpell(WIZARD_SPELL)~ ~RemoveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~dascr_namem1~ ~"%gobble%"~
+           END
+       END
+END //php
+//level 6
+ACTION_PHP_EACH scr_mg_6 AS this => that BEGIN
+
+       ACTION_PHP_EACH scr2 AS gobble => bobble BEGIN
+           ACTION_IF (~%this%~ STRING_EQUAL_CASE ~%bobble%~) BEGIN
+              // PRINT ~Scroll file name is %gobble%?  Spell resource %bobble%. Ya?~
+                 COPY ~%folder%/lib/lists/b_scrib.d~ ~%folder%/lib/lists/b_scrib.d~ // let's start building the dialog
+                 REPLACE_TEXTUALLY "SAY @115011" "SAY @115011
+IF ~HaveSpell(WIZARD_SPELL)~ THEN REPLY daspl_namem1 DO ~TakePartyGold(1000) DestroyGold(1000) RemoveSpell(WIZARD_SPELL) GiveItemCreate(dascr_namem1,Myself,1,1,1) ~ EXIT"
+                 REPLACE_TEXTUALLY ~HaveSpell(WIZARD_SPELL)~ ~HaveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~daspl_namem1~ ~"Use %that% spell to create scroll of %that%."~
+                 REPLACE_TEXTUALLY ~RemoveSpell(WIZARD_SPELL)~ ~RemoveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~dascr_namem1~ ~"%gobble%"~
+           END
+       END
+END //php
+//level 7
+ACTION_PHP_EACH scr_mg_7 AS this => that BEGIN
+
+       ACTION_PHP_EACH scr2 AS gobble => bobble BEGIN
+           ACTION_IF (~%this%~ STRING_EQUAL_CASE ~%bobble%~) BEGIN
+              // PRINT ~Scroll file name is %gobble%?  Spell resource %bobble%. Ya?~
+                 COPY ~%folder%/lib/lists/b_scrib.d~ ~%folder%/lib/lists/b_scrib.d~ // let's start building the dialog
+                 REPLACE_TEXTUALLY "SAY @115012" "SAY @115012
+IF ~HaveSpell(WIZARD_SPELL)~ THEN REPLY daspl_namem1 DO ~TakePartyGold(1500) DestroyGold(1500) RemoveSpell(WIZARD_SPELL) GiveItemCreate(dascr_namem1,Myself,1,1,1) ~ EXIT"
+                 REPLACE_TEXTUALLY ~HaveSpell(WIZARD_SPELL)~ ~HaveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~daspl_namem1~ ~"Use %that% spell to create scroll of %that%."~
+                 REPLACE_TEXTUALLY ~RemoveSpell(WIZARD_SPELL)~ ~RemoveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~dascr_namem1~ ~"%gobble%"~
+           END
+       END
+END //php
+//level 8
+ACTION_PHP_EACH scr_mg_8 AS this => that BEGIN
+
+       ACTION_PHP_EACH scr2 AS gobble => bobble BEGIN
+           ACTION_IF (~%this%~ STRING_EQUAL_CASE ~%bobble%~) BEGIN
+              // PRINT ~Scroll file name is %gobble%?  Spell resource %bobble%. Ya?~
+                 COPY ~%folder%/lib/lists/b_scrib.d~ ~%folder%/lib/lists/b_scrib.d~ // let's start building the dialog
+                 REPLACE_TEXTUALLY "SAY @115013" "SAY @115013
+IF ~HaveSpell(WIZARD_SPELL)~ THEN REPLY daspl_namem1 DO ~TakePartyGold(2500) DestroyGold(2500) RemoveSpell(WIZARD_SPELL) GiveItemCreate(dascr_namem1,Myself,1,1,1) ~ EXIT"
+                 REPLACE_TEXTUALLY ~HaveSpell(WIZARD_SPELL)~ ~HaveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~daspl_namem1~ ~"Use %that% spell to create scroll of %that%."~
+                 REPLACE_TEXTUALLY ~RemoveSpell(WIZARD_SPELL)~ ~RemoveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~dascr_namem1~ ~"%gobble%"~
+           END
+       END
+END //php
+//level 9
+ACTION_PHP_EACH scr_mg_9 AS this => that BEGIN
+
+       ACTION_PHP_EACH scr2 AS gobble => bobble BEGIN
+           ACTION_IF (~%this%~ STRING_EQUAL_CASE ~%bobble%~) BEGIN
+              // PRINT ~Scroll file name is %gobble%?  Spell resource %bobble%. Ya?~
+                 COPY ~%folder%/lib/lists/b_scrib.d~ ~%folder%/lib/lists/b_scrib.d~ // let's start building the dialog
+                 REPLACE_TEXTUALLY "SAY @115014" "SAY @115014
+IF ~HaveSpell(WIZARD_SPELL)~ THEN REPLY daspl_namem1 DO ~TakePartyGold(5000) DestroyGold(5000) RemoveSpell(WIZARD_SPELL) GiveItemCreate(dascr_namem1,Myself,1,1,1) ~ EXIT"
+                 REPLACE_TEXTUALLY ~HaveSpell(WIZARD_SPELL)~ ~HaveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~daspl_namem1~ ~"Use %that% spell to create scroll of %that%."~
+                 REPLACE_TEXTUALLY ~RemoveSpell(WIZARD_SPELL)~ ~RemoveSpellRES("%this%")~
+                 REPLACE_TEXTUALLY ~dascr_namem1~ ~"%gobble%"~
+           END
+       END
+END //php

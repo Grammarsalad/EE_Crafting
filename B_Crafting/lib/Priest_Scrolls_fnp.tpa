@@ -1,0 +1,795 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////             Priest Scrolls              //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+COPY ~%folder%/lib/lists/pr_full.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_cl1.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_cl2.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_cl3.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_cl4.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_cl5.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_cl6.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_cl7.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_dr1.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_dr2.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_dr3.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_dr4.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_dr5.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_dr6.tpa~ ~override~
+COPY ~%folder%/lib/lists/list_dr7.tpa~ ~override~
+
+COPY ~%folder%/lib/lists/cl_scrol.tpa~ ~override~
+COPY ~%folder%/lib/lists/dr_scrol.tpa~ ~override~
+COPY ~%folder%/lib/lists/pr_scrol.tpa~ ~override~
+
+COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~ //copies all spl files
+    PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+    READ_BYTE 0x001C type //Spell type
+     PATCH_IF type = 2 BEGIN   //priest spells only
+     READ_LONG  0x0008 name //spell name
+     PATCH_IF (%name% > 0) BEGIN
+       READ_BYTE 0x0021 general //general type
+
+       PATCH_IF ((general BAND 0b11000000) = 0b00000000)   BEGIN //If General type (I think)
+          READ_LONG  0x0034 level //spell level
+
+          PATCH_IF level = 1 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl1.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~list_dr1.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~pr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 1 
+          PATCH_IF level = 2 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl2.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~list_dr2.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~pr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 2
+          PATCH_IF level = 3 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl3.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~list_dr3.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~pr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 3
+          PATCH_IF level = 4 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl4.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~list_dr4.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~pr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 4
+          PATCH_IF level = 5 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl5.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~list_dr5.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~pr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 5
+          PATCH_IF level = 6 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl6.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~list_dr6.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~pr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 6
+          PATCH_IF level = 7 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl7.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~list_dr7.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~pr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 1 
+                             //CONTINUE
+       END//end general spl
+       PATCH_IF ((general BAND 0b11000000) = 0b10000000)   BEGIN //If Cleric exclusive (I think)
+          READ_LONG  0x0034 level //spell level
+
+          PATCH_IF level = 1 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl1.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~cl_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 1 
+          PATCH_IF level = 2 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl2.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~cl_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~" 
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 2
+          PATCH_IF level = 3 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl3.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~cl_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 3
+          PATCH_IF level = 4 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl4.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~cl_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 4
+          PATCH_IF level = 5 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl5.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~cl_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 5
+          PATCH_IF level = 6 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl6.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~cl_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 6
+          PATCH_IF level = 7 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_cl7.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~cl_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 7
+
+       END//end cl spl
+       PATCH_IF ((general BAND 0b11000000) = 0b01000000)   BEGIN //If Druid exclusive (I think)
+          READ_LONG  0x0034 level //spell level
+
+          PATCH_IF level = 1 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_dr1.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~dr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 1 
+          PATCH_IF level = 2 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_dr2.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~dr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 2
+          PATCH_IF level = 3 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_dr3.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~dr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 3
+          PATCH_IF level = 4 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_dr4.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~dr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 4
+          PATCH_IF level = 5 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_dr5.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~dr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 5
+          PATCH_IF level = 6 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_dr6.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~dr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 6
+          PATCH_IF level = 7 BEGIN
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE sp_ref ~%SOURCE_RES%~ BEGIN  END
+             INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+               REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SP~ ~B_~
+             END
+		INNER_ACTION BEGIN
+		COPY_EXISTING ~list_dr7.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%s_name%~"
+		COPY_EXISTING ~dr_scrol.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		COPY_EXISTING ~pr_full.tpa~ ~override~
+			REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%sp_ref% => ~%scroll_ref%~"
+		END  //inner action
+             PATCH_PRINT "Scroll name is %scroll_ref%"
+             PATCH_PRINT "Spell name is %s_name%"
+             PATCH_PRINT "Level is %level%"
+          END//end level 7
+
+       END//end dr spl
+     END //end name non-blank
+     END //only priest spells
+    END//if legit spell
+    BUT_ONLY
+
+//create scroll
+//priest list
+INCLUDE ~override/list_cl1.tpa~  //cleric 1
+INCLUDE ~override/list_dr1.tpa~  //druid 1
+INCLUDE ~override/pr_scrol.tpa~  //universal scrolls
+INCLUDE ~override/cl_scrol.tpa~  //cleric scrolls
+INCLUDE ~override/dr_scrol.tpa~  //druid scrolls
+
+
+//universal scrolls
+ACTION_PHP_EACH pr_scr AS block => clock BEGIN
+PRINT ~%block% is spell file name; %clock% is scroll file name to be created.~
+  COPY_EXISTING ~%block%.SPL~ ~override~
+    PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+             READ_LONG  0x0034 level //spell level
+             READ_LONG  0x0008 name //spell name
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+           INNER_ACTION BEGIN
+            COPY ~%folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%clock%.ITM~   //Level 1 universal as generic.  usable by all druid/clerics etc.
+             WRITE_LONG 0x0008 ~%name%~
+             WRITE_LONG 0x000c ~%name%~
+             WRITE_LONG 0x0054 ~%desc%~
+             WRITE_SHORT 0x007E target //Target-check
+             WRITE_SHORT 0x0080 range //range-check
+             WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
+             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+             WRITE_LONG 0x0034 (level * 100)       //cost
+             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%block%~ END
+           END //end inner action
+   END
+   BUT_ONLY
+END
+
+//cleric scrolls
+ACTION_PHP_EACH cl_scr AS block => clock BEGIN
+PRINT ~%block% is spell file name; %clock% is scroll file name to be created.~
+  COPY_EXISTING ~%block%.SPL~ ~override~
+    PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+             READ_LONG  0x0034 level //spell level
+             READ_LONG  0x0008 name //spell name
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+           INNER_ACTION BEGIN
+            COPY ~%folder%/data/scrolls/priest_1/b_cl102.itm~ ~override/%clock%.ITM~   //Level 1 cleric only as generic.  usable by pally/cleric
+             WRITE_LONG 0x0008 ~%name%~
+             WRITE_LONG 0x000c ~%name%~
+             WRITE_LONG 0x0054 ~%desc%~
+             WRITE_SHORT 0x007E target //Target-check
+             WRITE_SHORT 0x0080 range //range-check
+             WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
+             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+             WRITE_LONG 0x0034 (level * 100)       //cost
+             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%block%~ END
+           END //end inner action
+   END
+   BUT_ONLY
+END
+
+//druid scrolls
+ACTION_PHP_EACH dr_scr AS block => clock BEGIN
+PRINT ~%block% is spell file name; %clock% is scroll file name to be created.~
+  COPY_EXISTING ~%block%.SPL~ ~override~
+    PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+             READ_LONG  0x0034 level //spell level
+             READ_LONG  0x0008 name //spell name
+             READ_STRREF 0x0008 s_name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             INNER_PATCH_SAVE spellicon ~%SOURCE_RES%~ BEGIN  END
+           INNER_ACTION BEGIN
+            COPY ~%folder%/data/scrolls/priest_1/b_dr102.itm~ ~override/%clock%.ITM~   //Level 1 druid only as generic.  usable by ranger/druid
+             WRITE_LONG 0x0008 ~%name%~
+             WRITE_LONG 0x000c ~%name%~
+             WRITE_LONG 0x0054 ~%desc%~
+             WRITE_SHORT 0x007E target //Target-check
+             WRITE_SHORT 0x0080 range //range-check
+             WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
+             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+             WRITE_LONG 0x0034 (level * 100)       //cost
+             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%block%~ END
+           END //end inner action
+   END
+   BUT_ONLY
+END
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////              Scroll Placement           //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//designate stores
+COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
+	READ_BYTE 0x10 "flags" ELSE 0
+            PATCH_IF (("%flags%" BAND 0b00100001) = 0b00100001) BEGIN // if cures available and sells stuff; also filters out invalid files
+            READ_LONG 0x2c "buy_off"   ELSE 0
+  	    READ_LONG 0x34 "sale_off"  ELSE 0
+            READ_LONG 0x4c "drink_off" ELSE 0
+ 	    READ_LONG 0x70 "cure_off"  ELSE 0
+	    READ_LONG 0x74 "cure_num"  ELSE 0
+            INNER_PATCH_SAVE store_s ~%SOURCE_RES%~ BEGIN END
+	    SET "new_cure" = 0
+	    SET "sppr103" = 0 // cure light wounds
+  	    SET "sppr307" = 0 // remove curse
+  	    SET "sppr401" = 0 // remove curse
+  	    SET "sppr504" = 0 // raise dead
+	    SET "sppr712" = 0 // res
+            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
+		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr103" = 0) BEGIN
+		  SET "sppr103" = 1
+		END   //end check for sppr103
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr307" = 0) BEGIN
+		  SET "sppr307" = 1
+		END   //end check for sppr307
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr401" = 0) BEGIN
+		  SET "sppr401" = 1
+		END   //end check for sppr401
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr504" = 0) BEGIN
+		  SET "sppr504" = 1
+		END   //end check for sppr504
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr712" = 0) BEGIN
+                  SET "sppr712" = 1
+		END   //end check for sppr712
+            END //end for loop
+            INNER_ACTION BEGIN
+                ACTION_IF ("sppr103" = 1) BEGIN
+                   ACTION_PHP_EACH fnp_scroll_sell AS s_item => s_level BEGIN
+                        ACTION_IF (~%s_level%~ < 3) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_item%~ #1 #0 #0 ~IDENTIFIED~ #5
+                                  BUT_ONLY
+                        END//end lev less than 3
+                   END //end php action
+                END
+                ACTION_IF ("sppr307" = 1) BEGIN
+                   ACTION_PHP_EACH fnp_scroll_sell AS s_item => s_level BEGIN
+                        ACTION_IF (~%s_level%~ = 3) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_item%~ #1 #0 #0 ~IDENTIFIED~ #5
+                                  BUT_ONLY
+                        END//end lev less than 3
+                   END //end php action
+                END
+                ACTION_IF ("sppr401" = 1) BEGIN
+                   ACTION_PHP_EACH fnp_scroll_sell AS s_item => s_level BEGIN
+                        ACTION_IF (~%s_level%~ = 4) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_item%~ #1 #0 #0 ~IDENTIFIED~ #5
+                                  BUT_ONLY
+                        END//end lev less than 3
+                   END //end php action
+                END
+                ACTION_IF ("sppr504" = 1) BEGIN
+                   ACTION_PHP_EACH fnp_scroll_sell AS s_item => s_level BEGIN
+                        ACTION_IF (~%s_level%~ = 5) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_item%~ #1 #0 #0 ~IDENTIFIED~ #5
+                                  BUT_ONLY
+                        END//end lev less than 3
+                   END //end php action
+                END
+                ACTION_IF ("sppr712" = 1) BEGIN
+                   ACTION_PHP_EACH fnp_scroll_sell AS s_item => s_level BEGIN
+                        ACTION_IF (~%s_level%~ > 5) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_item%~ #1 #0 #0 ~IDENTIFIED~ #3
+                                  BUT_ONLY
+                        END//end lev less than 3
+                   END //end php action
+                END
+            END //end inner action
+       END //end cure check
+       BUT_ONLY

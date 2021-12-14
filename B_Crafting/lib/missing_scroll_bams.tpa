@@ -1,0 +1,27 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////              Missing BAMS               //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//it seems that BG2EE (At least!) doesn't have all priest scroll bams.  Add them here if needed
+ACTION_IF GAME_IS ~bg2ee~ THEN BEGIN  //missing scroll bams in bg2ee
+      COPY ~%folder%/data/scrolls/bam/missing~ ~override~   //missing scroll bams
+END
+
+//if bam has no pres ref (e.g. say a custom spl where the modder didn't supply a scroll bam)
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+    PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+         READ_BYTE 0x001C item_type // item type = %item_type%
+         PATCH_IF item_type = 0x000b BEGIN // only if scroll type
+              READ_ASCII 0x003a spellicon  //let's make sure that the spell icon is %source_file%A (if not change it AND change bam file name if exists to same name)
+              PATCH_PRINT "spell icon of %SOURCE_RES%.ITM is %spellicon%.bam(?)"
+                PATCH_IF !FILE_EXISTS_IN_GAME ~%spellicon%.BAM~ BEGIN
+                     INNER_ACTION BEGIN
+                          COPY_EXISTING ~ISCRL01.bam~ ~override/%spellicon%.bam~   //missing scroll bams
+                     END
+                END
+         END //only scroll type
+     END    //end valid file
+BUT_ONLY

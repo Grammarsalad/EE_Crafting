@@ -8,7 +8,7 @@ STATISTICS:
 Ranged THAC0: +2
 Special: Doubles Vision Range
 
-Duration: 1 hours
+Duration: 1 hour
 
 Weight: 1~
 
@@ -118,6 +118,125 @@ Duration: 4 hours
 
 Weight: 1~
 
+@900000036 = ~Potion of Persuasiveness~
+@900000037 = ~Very much as the name implies, this potion will increase the Charisma of the imbiber by 4 points, up to a maximum of 25. The effect will last the full duration, which is 3 hours, or until dispelled.
+
+STATISTICS:
+
+Charisma: +4 (non-cumulative)
+Duration: 3 hours
+
+Weight: 1~
+@900000038 = ~Potion of Superior Healing~
+@900000039 = ~When consumed, this potion restores 40 Hit Points to the imbiber. The effect is instantaneous, and the potion is destroyed in the process.
+
+STATISTICS:
+
+Special: Restores 40 Hit Points
+
+Weight: 1~
+
+@900000040 = ~Potion of Barkskin~
+@900000041 = ~This potion produces the same effect as the spell it is named from.
+
+STATISTICS:
+
+Armor Class: 3
+Save vs. Death: +1
+Save vs. Wand: +1
+Save vs. Polymorph: +1
+Save vs. Breath: +1
+
+Weight: 1~
+
+@900000042 = ~Oil of the Serpent's Scales~
+@900000043 = ~The creation of this useful oil is quite dangerous, involving the extraction of venom from five live ophidians and the removal of twenty or more scales from each of the same. The scales are left to soak in a mixture of venom, ground poppies, and a variety of other strange ingredients for a full month. At the end of this time, the scales are burned and rolled in another mixture of oils and powders until it takes on the consistency of thick butter. A variety of spells are then cast upon the mixture to give the oil its full powers. When used, the target's skin becomes tough, green, and scaly. While the oil is extremely useful, it takes a full round to adequately smear it over the recipient's body.
+
+STATISTICS:
+
+Special: Target has +2 Armor Class for 6 rounds (non-cumulative)
+Takes a full round to use.
+
+Weight: 1~
+@900000044 = ~Elven Healing Wine~
+@900000045 = ~This bottle of elven wine also has the properties of a healing potion. During one of the elven festivals, the priests of the Seldarine's Hand imbibed too much that day and accidentally added a barrel of elven wine to a mixture that was intended for healing potions.
+
+STATISTICS:
+
+Special: Heals 2d8 Hit Points
+
+Weight: 1~
+@900000046 = ~Potion of Clairvoyance~
+@900000047 = ~This potion confers the See Invisible ability similar to the 2nd-level wizard spell called Detect Invisibility, except that the effects will last for 10 minutes.
+
+STATISTICS:
+
+Special: See Invisible
+Duration: 10 minutes
+
+Weight: 1~
+@900000048 = ~Philter of Purification~
+@900000049 = ~This elven concoction will purify the drinker of any diseases spreading through <PRO_HISHER> body, as well as certain afflictions.
+
+STATISTICS:
+
+Special: Cures blindness, deafness, and disease
+
+Weight: 1~
+
+@900000050 = ~Oil of Second Chances~
+@900000051 = ~Priests of Tymora produce this unique type of oil in abundance, but often sell it so quickly that adventurers become furious when they cannot procure it. Priests of other faiths often keep such potions in reserve if they cannot use their magic to remove a curse. Enemies of the Tymoran faith, such as the ill-willed Beshabans, are searching for a way to make a similar potion that compounds the effects of a magical curse.
+
+STATISTICS:
+
+Target has Remove Curse, Bless (6 rounds), and Luck (3 rounds) cast upon them
+Takes a full round to use
+
+Weight: 1~
+
+@900000052 = ~Elven Wine~
+@900000053 = ~A bottle of elven wine.
+
+STATISTICS:
+
+Weight: 1~
+
+@900000054 = ~Dwarven Mead~
+@900000055 = ~A flask of dwarven mead.
+
+STATISTICS:
+
+Weight: 1~
+
+@900000056 = ~Dwarven Courage~
+@900000057 = ~A flask of dwarven mead specially prepared by dwarven priests.  When concumed, the drinker is immune to fear for 1 hour.
+
+STATISTICS:
+
+Special: immune to fear
+
+Weight: 1~
+
+@900000058 = ~Sealed Jar~
+@900000059 = ~This strange jar emits a humming noise when pressed against your ear.
+
+STATISTICS:
+
+Weight: 1~
+@900000060 = ~Jar of Bees~
+@900000061 = ~This strange jar emits a humming noise when pressed against your ear. You know it to contain magical bees that attack a single creature that is unlucky enought to be nearby when this bottle is smashed or opened.
+The target of this spell can save vs. breath -4 to avoid the effects of the jar of bees. Otherwise, the victim takes 4 point of poison damage every 2 seconds for four rounds.  Moreover, the victim fights with a -2 penalty to <PRO_HISHER> attack roll and a -2 penalty to <PRO_HISHER> Armor Class. The bees will repeatedly sting the target, making it very difficult to cast spells (50% chance of spell failure).
+
+Undead, constructs, and elementals are unaffected by the swarm.
+
+STATISTICS:
+
+Damage: 4 points of poison/2 seconds for 1 round; 3 points of poison damage/2 rounds for 1 round; 2 points of poison damage/2 seconds for 1 round; 1 point of poison damage/2 seconds for 1 round.
+Special: -2 to hit/AC; 50% spell failure.
+
+Weight: 1~
+
+
 //Components @900009001 to @900010000
 
 
@@ -204,7 +323,7 @@ Charge abilities:
 - Knock
   Opens all but the strongest locks
   Range: 50 ft.
-  Area of Effect: 1 creature
+  Area of Effect: 1 door
 
 Requires:
  9 Intelligence
@@ -832,6 +951,41 @@ Weight: 1~
 @900010086 = ~Arc Lightning~
 @900010087 = ~Lightning Bolt~
 
+@900010088 = ~Wand of Peace~
+@900010089 = ~Lightning Bolt~
+@900010090 = ~Peace~
+@900010091 = ~Death Fog~
+@900010092 = ~Acid Storm~
+@900010093 = ~Wand of Freezing Death~
+@900010094 = ~This deadly wand was crafted by the wizard Hegthen to protect him from his rival's fire-using minions. Hegthen made frequent use of the wand during his protracted war with his enemy. After ten years of hounding, Hegthen decided to take the battle to his rival, defeating him in one of the most spectacular magical duels ever seen in Suzail's history. As his terms of victory, Hethgen demanded that his enemy's name be magically snuffed out of the memory of all who knew him. His enemy accepted and later went on to become the Cloaked Flame, a dangerous terrorist killed by Cormyrean Purple Dragons and War Wizards in 1212 DR.
+
+STATISTICS:
+
+Charge abilities:
+- Icelance
+  Damage: 5d6 cold
+  Stuns target for 3 rounds (Save vs. Spell negates)
+  Range: 100 ft.
+  Area of Effect: 1 creature
+
+- Snilloc's Snowball Swarm
+  Damage: 4d3 cold (Save vs. Spell for half)
+  Range: 40 ft.
+  Area of Effect: 15-ft. radius
+
+- Ice Storm
+  Damage: 3d10 cold
+  Range: 40 ft.
+  Area of Effect: 15-ft. radius
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+@900010095 = ~Icelance~
+@900010096 = ~Wand of Freezing Death~
+@900010097 = ~Snilloc's Snowball Swarm~
+@900010098 = ~Ice Storm~
 
 //Wands Rechange @900020001 to @900030000
 

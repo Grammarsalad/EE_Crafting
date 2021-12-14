@@ -26,6 +26,103 @@ TO DO 38: To be remove lists: regen_list,
 
 TO DO 39: ADD_ICONS: incorporate mage vs. priest scrolls (for learning), and add more stores
 
+TO DO 40: Custom wand icons: wand of knock, animated wand, wand of arc lightning, wand of illumination, bonewand, wand of banishment, wand of eyes, wand of fireballs, wand of fog, wand of freshness,
+
+Version 0.00.03
+
+2021-12-14
+
+- Merged 'in progress' material with main branch (not tested for install).
+
+2021-11-12
+
+- Added Jar of bees
+
+2021-11-03
+
+- Added Dwarven Courage and corrected text for elven healing wine
+
+
+2021-10-30
+
+- Missing potions (potion of barkskin; oil of serpent's scale; Philter of Purification; elven healing wine; Mummy's Tea; Potion of Clairvoyance; Oil of Second Chances)
+
+2021-10-28
+
+- Missing potions: potion of persuasiveness; Potion of Superior Healing; 
+
+2021-10-25
+
+- Missing potions (mum's tea, coffee and oil of null effect)
+
+- Added potion of vision
+
+2021-10-21
+
+- Updated Priest_Scrolls_fnp.tpa to include a full list of priest spells to scrolls
+
+- Updated cost
+
+2021-10-17
+
+- Started auto priest dialog (scroll_craft_priest.tpa)
+
+2021-10-17
+
+- Missing bams code for scrolls
+
+- Changed priest scrolls to ref %SOURCE_RES%A for bam (but test for long names--tested, doesn't crash)
+
+2021-10-16
+
+- Auto scroll crafting macro: mages
+
+- missing priest scrolls (levels 1-7)
+
+2021-08-30
+
+- Added crafting.tra
+
+- Started recharge d file
+
+- 
+
+2021-08-29
+
+- Wand of polymorph icon
+
+- Wand of knock
+
+- Wand of spiders
+
+2021-08-28
+
+- Finished wand to freezing death
+
+- Wand of force
+
+2021-08-24
+
+- Started wand of freezing death
+
+2021-08-22
+
+- Added tooltips.tpa
+
+- created acid storm spell for wand of corrosion
+
+- Finished wand of corrosion
+
+2021-08-22
+
+- Refocusing just on existing items in all games first (and add new ones later)
+
+- Wand of corrosion (still need to add acid storm effect)
+
+2021-08-12
+
+- Started Wand of Peace
+
 Version 0.00.02
 
 2021-08-08

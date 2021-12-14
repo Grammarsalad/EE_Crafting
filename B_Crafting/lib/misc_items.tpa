@@ -1,0 +1,42 @@
+// Notebook files - notebook itself
+COPY ~%folder%/data/arcane_crafting/B_NBOOKA.bam~ ~override~  //   B_NBOOK.itm
+COPY ~%folder%/data/arcane_crafting/B_NBOOKB.bam~ ~override~  //   B_NBOOK.itm
+COPY ~%folder%/data/arcane_crafting/B_NBOOKC.bam~ ~override~  //   B_NBOOK.itm
+
+//player notebook of recipies
+//the notebook/store itself
+COPY ~%folder%/data/arcane_crafting/B_NBOOK.sto~ ~override~  //   B_NBOOK.itm
+	SAY STORE_NAME @900010050
+COPY ~%folder%/data/arcane_crafting/B_NBOOK.itm~ ~override~  //
+	SAY NAME1 @900010050
+	SAY NAME2 @900010050
+	SAY IDENTIFIED_DESC @900010051
+	SAY UNIDENTIFIED_DESC @900010051
+//pages
+//blank pages
+COPY ~%folder%/data/arcane_crafting/B_PPTN00.itm~ ~override~  //
+	SAY NAME1 @900010053
+	SAY NAME2 @900010053
+	SAY IDENTIFIED_DESC @900010054
+	SAY UNIDENTIFIED_DESC @900010054
+
+COPY ~%folder%/data/arcane_crafting/B_PPTN00.bam~ ~override~  //   blank page small
+COPY ~%folder%/data/arcane_crafting/B_BPTN00.bam~ ~override~  //   blank page large
+
+
+//non-blank pages
+COPY ~%folder%/data/arcane_crafting/B_PPTN01.bam~ ~override~  //   non-blank page small - potions
+
+// CONTINUE
+
+//Potion recepe
+COPY ~%folder%/data/arcane_crafting/B_PPTN00.bam~ ~override~  //   really need a second frame, here...
+COPY ~%folder%/data/arcane_crafting/B_PPTNA.bam~ ~override~  //   kinda ugly (need to get rid of green, but I don't want to mess it up...)
+
+COPY ~%folder%/data/arcane_crafting/B_PPTN00.itm~ ~override~  //generic potion page (will use as a base to copy all others over)
+	SAY NAME1 @900010052
+	SAY NAME2 @900010052
+//	SAY IDENTIFIED_DESC @900010051
+//	SAY UNIDENTIFIED_DESC @900010051
+
+//Add 'pages' to notebook to do CONTINUE (i.e. w/add store item)

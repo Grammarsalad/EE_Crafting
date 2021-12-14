@@ -27,11 +27,13 @@
 @25 = ~High Level Abilities~
 
 @26 = ~Install Simple Item creation for arcane classes~
+@27 = ~Install Simple Item creation for arcane and divine classes~
 
 @50 = ~Install the Standard (Simulated PnP) version of Item creation for all casting classes~
 @51 = ~Install the Standard (Simulated PnP) version of Item creation for all casting classes~
 @52 = ~Item Creation~
 @53 = ~Install All Revised Spells (per ini)~
+@53 = ~Install Modified C~
 
 @100= ~Add New Spells~
 @101= ~Add New Items~

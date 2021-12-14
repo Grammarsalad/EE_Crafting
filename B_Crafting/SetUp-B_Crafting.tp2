@@ -2,7 +2,7 @@ BACKUP ~backup/B_Crafting~
 AUTHOR ~Grammarsalad~
 //README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.00.02~
+VERSION ~0.00.03~
 
 
 ALWAYS
@@ -33,6 +33,9 @@ ALWAYS
           OUTER_SPRINT ~style~ ~iwdee~
         END
 
+  	INCLUDE ~B_Crafting/b_craft_settings.ini~
+
+        INCLUDE ~B_Crafting/lib/tooltips.tpa~
 
         INCLUDE ~B_Crafting/lib/spon_cast_functions.tpa~
 
@@ -98,12 +101,13 @@ LANGUAGE ~English~ ~english~
          ~B_Crafting/tra/english/setup.tra~
          ~B_Crafting/tra/english/items.tra~  //for items
          ~B_Crafting/tra/english/icons.tra~   //icons
+         ~B_Crafting/tra/english/crafting.tra~   //crafting
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////                                                                          ////////////////////////
-////////////////////////               Spells & Magic: ??? - ???: Magic Item Creation             ////////////////////////
+////////////////////////               Downtime: 1 - ????: Modifying Components                   ////////////////////////
 ////////////////////////                                                                          ////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -111,61 +115,78 @@ LANGUAGE ~English~ ~english~
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//			4011: Install Simple Item creation for arcane classes
+//		1: Modifying Components: Material Components for item creation
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
-BEGIN @26  //Install Simple Item creation for arcane classes
-SUBCOMPONENT @52 //Item Creation
-DESIGNATED 4011
-GROUP @52 //Item Creation
+BEGIN @50  //Install Modifying Components: Material Components
+//SUBCOMPONENT @52 //
+DESIGNATED 1
+GROUP @52 //Modifying Components
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
 
-//missing items
-INCLUDE ~%folder%/lib/missing_wands.tpa~        //New items
+//set ini and add items to the game to be allocated later on
+OUTER_SET b_material_craft = 1
 
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////                                                                          ////////////////////////
-////////////////////////              Spells & Magic: ???-???: New and Revised Items              ////////////////////////
-////////////////////////                                                                          ////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////                Components 501-???: New Items                 ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
+//misc items
+INCLUDE ~%folder%/lib/misc_items.tpa~
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//			501: Install All new items (including IWDEE items if applicable)
+//		10: Modifying Components: 3e potions: only 3e potions
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
-/*
-//not ready
-BEGIN @4  //Install All new items (including IWDEE items if applicable)
-SUBCOMPONENT @101
-DESIGNATED 501
-GROUP @6 
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
+BEGIN @102  //Craft only 3e style potions
+SUBCOMPONENT @54 //3e style potions
+DESIGNATED 10
+GROUP @52 //Modifying Components
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
 
-ACTION_IF !FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //no fnp spheres
-  INCLUDE ~%folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
-END
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //fnp spheres (of some kind)
-  INCLUDE ~%folder%/data/components/Setup_Priest_Scrolls_fnp.tpa~      //Priest Scrolls
-END
+//set ini and add items to the game to be allocated later on
+OUTER_SET b_3e_potions = 10 //only 3e potions
 
-INCLUDE ~%folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//		11: Modifying Components: 3e potions: only 2e potions
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @103  //Craft only 2e style potions
+SUBCOMPONENT @54 //3e style potions
+DESIGNATED 11
+GROUP @52 //Modifying Components
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
+
+//set ini and add items to the game to be allocated later on
+OUTER_SET b_3e_potions = 0 //only 2e potions
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//		12: Modifying Components: 3e potions: 3e AND 2e potions
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @104  //Craft 2e style potions and 3e style potions
+SUBCOMPONENT @54 //3e style potions
+DESIGNATED 12
+GROUP @52 //Modifying Components
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
+
+//set ini and add items to the game to be allocated later on
+OUTER_SET b_3e_potions = 1 //only 2e potions
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////                                                                          ////////////////////////
+////////////////////////               Downtime: 4001 - ????: Magic Item Creation                 ////////////////////////
+////////////////////////                                                                          ////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -180,78 +201,35 @@ DESIGNATED 4001
 GROUP @52 //Item Creation
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
 
-//player notebook of recipies
-// Notebook files - notebook itself
-COPY ~%folder%/data/arcane_crafting/B_NBOOKA.bam~ ~override~  //   B_NBOOK.itm
-COPY ~%folder%/data/arcane_crafting/B_NBOOKB.bam~ ~override~  //   B_NBOOK.itm
-COPY ~%folder%/data/arcane_crafting/B_NBOOKC.bam~ ~override~  //   B_NBOOK.itm
-//the notebook/store itself
-COPY ~%folder%/data/arcane_crafting/B_NBOOK.sto~ ~override~  //   B_NBOOK.itm
-	SAY STORE_NAME @900010050
-COPY ~%folder%/data/arcane_crafting/B_NBOOK.itm~ ~override~  //
-	SAY NAME1 @900010050
-	SAY NAME2 @900010050
-	SAY IDENTIFIED_DESC @900010051
-	SAY UNIDENTIFIED_DESC @900010051
-//pages
-//blank pages
-COPY ~%folder%/data/arcane_crafting/B_PPTN00.itm~ ~override~  //
-	SAY NAME1 @900010053
-	SAY NAME2 @900010053
-	SAY IDENTIFIED_DESC @900010054
-	SAY UNIDENTIFIED_DESC @900010054
-
-COPY ~%folder%/data/arcane_crafting/B_PPTN00.bam~ ~override~  //   blank page small
-COPY ~%folder%/data/arcane_crafting/B_BPTN00.bam~ ~override~  //   blank page large
-
-
-//non-blank pages
-COPY ~%folder%/data/arcane_crafting/B_PPTN01.bam~ ~override~  //   non-blank page small - potions
-
-// CONTINUE
+//not ready yet
 /*
-//Potion recepe
-COPY ~%folder%/data/arcane_crafting/B_PPTN00.bam~ ~override~  //   really need a second frame, here...
-COPY ~%folder%/data/arcane_crafting/B_PPTNA.bam~ ~override~  //   kinda ugly (need to get rid of green, but I don't want to mess it up...)
 
-COPY ~%folder%/data/arcane_crafting/B_PPTN00.itm~ ~override~  //generic potion page (will use as a base to copy all others over)
-	SAY NAME1 @900010052
-	SAY NAME2 @900010052
-//	SAY IDENTIFIED_DESC @900010051
-//	SAY UNIDENTIFIED_DESC @900010051
-
-//Add 'pages' to notebook to do CONTINUE (i.e. w/add store item)
 
 */
 
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////                505: Install Priest Scrolls                   ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
+// ...
 
-/*
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//	4010: Install Simple Item creation for arcane and divine classes
+//__________________________________________________________________________________
+//__________________________________________________________________________________
 
-//  Not ready
+BEGIN @27 //Install Simple Item creation for arcane and divine classes
+SUBCOMPONENT @52 //Item Creation
+DESIGNATED 4010
+GROUP @52 //Item Creation
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
 
-BEGIN @22  //Install Priest Scrolls
-//SUBCOMPONENT @101
-DESIGNATED 505
-GROUP @6 
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
+LAM b_craft_user_settings
+LAM b_craft_settings_global
 
-ACTION_IF !FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //no fnp spheres
-  INCLUDE ~%folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
-END
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //fnp spheres (of some kind)
-  INCLUDE ~%folder%/data/components/Setup_Priest_Scrolls_fnp.tpa~      //Priest Scrolls
-END
+OUTER_SET b_arcane_craft = 1
+OUTER_SET b_divine_craft = 1
 
-*/
-
-
+  INCLUDE ~%folder%/comp/Setup_Craft_Scroll.tpa~        //scroll crafting
+  INCLUDE ~%folder%/comp/Setup_Craft_Potion.tpa~        //potion crafting
 
 
 

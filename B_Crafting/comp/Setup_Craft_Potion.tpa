@@ -1,0 +1,156 @@
+
+
+//item with tier
+INCLUDE ~%folder%/lib/lists/potion_list.tpa~
+//create list item with spell
+INCLUDE ~%folder%/lib/lists/potion_list2.tpa~
+//3e potions
+COPY ~%folder%/lib/lists/3e_potion.tpa~ ~override~
+//cure lev 1
+COPY ~%folder%/lib/lists/cure_1.tpa~ ~override~
+//cure lev 2
+COPY ~%folder%/lib/lists/cure_2.tpa~ ~override~
+//disease
+COPY ~%folder%/lib/lists/disea.tpa~ ~override~
+//invisibility
+COPY ~%folder%/lib/lists/invis.tpa~ ~override~
+//poison
+COPY ~%folder%/lib/lists/pois.tpa~ ~override~
+//Vision 1
+COPY ~%folder%/lib/lists/vision_3.tpa~ ~override~
+//Vision 3
+COPY ~%folder%/lib/lists/vision_1.tpa~ ~override~
+//elect 1
+COPY ~%folder%/lib/lists/elect_1.tpa~ ~override~
+//awake 1
+COPY ~%folder%/lib/lists/euph_1.tpa~ ~override~
+//free 1
+COPY ~%folder%/lib/lists/free_1.tpa~ ~override~
+//free 2
+COPY ~%folder%/lib/lists/free_2.tpa~ ~override~
+//cold 1
+COPY ~%folder%/lib/lists/cold_1.tpa~ ~override~
+//cold 2
+COPY ~%folder%/lib/lists/cold_2.tpa~ ~override~
+//fire 1
+COPY ~%folder%/lib/lists/fire_1.tpa~ ~override~
+//fire 2
+COPY ~%folder%/lib/lists/fire_2.tpa~ ~override~
+//plant 3
+COPY ~%folder%/lib/lists/plant_3.tpa~ ~override~
+
+//3e potions
+//should be an action if setting is selected
+
+ACTION_IF (%b_3e_potions% > 0) BEGIN  //
+
+  INCLUDE ~%folder%/lib/lists/3e_potions.tpa~
+
+END //3e style potions
+
+//2e style potions
+
+ACTION_IF (%b_3e_potions% < 10) BEGIN  //
+
+  INCLUDE ~%folder%/lib/lists/2e_potions.tpa~
+
+END //end 2e style potions
+
+
+
+
+
+
+//below for reference only (probably)
+/*
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+	PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+		READ_SHORT  ~0x1c~ type
+		PATCH_IF (type = 9) BEGIN  	   //potion
+		
+		END//potion type
+        END
+BUT_ONLY
+
+
+COPY ~%folder%/lib/lists/potion_list.tpa~ ~override~
+COPY ~%folder%/lib/lists/potion_list.2da~ ~override~
+
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+	PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+		READ_SHORT  ~0x1c~ type
+		PATCH_IF (type = 9) BEGIN  	   //potion
+		     READ_LONG  0x000c name //spell name
+                         PATCH_IF (%name% > 0) BEGIN
+                           READ_LONG  ~0x34~ gold
+                           READ_STRREF 0x000c s_name
+                           PATCH_IF (gold < 200) AND (gold > 1)  BEGIN
+                                INNER_PATCH_SAVE pot_file ~%SOURCE_RES%~ BEGIN END
+		                INNER_ACTION BEGIN
+		                COPY_EXISTING ~potion_list.tpa~ ~override~
+			            REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%pot_file% => ~tier_1~"
+		                APPEND ~potion_list.2da~ ~%s_name%%TAB%1%TAB%%gold%%TAB%%pot_file%~
+                                END  //inner action
+                           END//tier 1
+                           PATCH_IF (gold < 300) AND (gold > 199)  BEGIN
+                                INNER_PATCH_SAVE pot_file ~%SOURCE_RES%~ BEGIN END
+		                INNER_ACTION BEGIN
+		                COPY_EXISTING ~potion_list.tpa~ ~override~
+			            REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%pot_file% => ~tier_2~"
+		                APPEND ~potion_list.2da~ ~%s_name%%TAB%2%TAB%%gold%%TAB%%pot_file%~
+                                END  //inner action
+                           END//tier 2
+                           PATCH_IF (gold < 400) AND (gold > 299)  BEGIN
+                                INNER_PATCH_SAVE pot_file ~%SOURCE_RES%~ BEGIN END
+		                INNER_ACTION BEGIN
+		                COPY_EXISTING ~potion_list.tpa~ ~override~
+			            REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%pot_file% => ~tier_3~"
+		                APPEND ~potion_list.2da~ ~%s_name%%TAB%3%TAB%%gold%%TAB%%pot_file%~
+                                END  //inner action
+                           END//tier 3
+                           PATCH_IF (gold < 500) AND (gold > 399)  BEGIN
+                                INNER_PATCH_SAVE pot_file ~%SOURCE_RES%~ BEGIN END
+		                INNER_ACTION BEGIN
+		                COPY_EXISTING ~potion_list.tpa~ ~override~
+			            REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%pot_file% => ~tier_4~"
+		                APPEND ~potion_list.2da~ ~%s_name%%TAB%4%TAB%%gold%%TAB%%pot_file%~
+                                END  //inner action
+                           END//tier 4
+                           PATCH_IF (gold < 600) AND (gold > 499)  BEGIN
+                                INNER_PATCH_SAVE pot_file ~%SOURCE_RES%~ BEGIN END
+		                INNER_ACTION BEGIN
+		                COPY_EXISTING ~potion_list.tpa~ ~override~
+			            REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%pot_file% => ~tier_5~"
+		                APPEND ~potion_list.2da~ ~%s_name%%TAB%5%TAB%%gold%%TAB%%pot_file%~
+                                END  //inner action
+                           END//tier 5
+                           PATCH_IF (gold < 1001) AND (gold > 599)  BEGIN
+                                INNER_PATCH_SAVE pot_file ~%SOURCE_RES%~ BEGIN END
+		                INNER_ACTION BEGIN
+		                COPY_EXISTING ~potion_list.tpa~ ~override~
+			            REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%pot_file% => ~tier_6~"
+		                APPEND ~potion_list.2da~ ~%s_name%%TAB%6%TAB%%gold%%TAB%%pot_file%~
+                                END  //inner action
+                           END//tier 6
+                           PATCH_IF (gold >1000) BEGIN
+                                INNER_PATCH_SAVE pot_file ~%SOURCE_RES%~ BEGIN END
+		                INNER_ACTION BEGIN
+		                COPY_EXISTING ~potion_list.tpa~ ~override~
+			            REPLACE_TEXTUALLY "BEGIN" "BEGIN
+%pot_file% => ~tier_7~"
+		                APPEND ~potion_list.2da~ ~%s_name%%TAB%7%TAB%%gold%%TAB%%pot_file%~
+                                END  //inner action
+                           END//tier 7
+                      END//name >0
+                END//type potion
+        END
+BUT_ONLY
+
+*/
